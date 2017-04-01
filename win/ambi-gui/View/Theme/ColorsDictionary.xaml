@@ -8,6 +8,8 @@
                         MethodName="GetWindowColorizationColor"/>
 
     <SolidColorBrush x:Key="ColorBackground" Color="White" />
+    <SolidColorBrush x:Key="ColorMouseOver" Color="#DDDDDD" />
+    <SolidColorBrush x:Key="ColorMouseDown" Color="#CCCCCC" />
     <SolidColorBrush  x:Key="ColorWindows" Color="{Binding Source={StaticResource WindowsColorizationProvider}}" />
     
 </ResourceDictionary>

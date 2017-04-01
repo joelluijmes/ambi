@@ -13,35 +13,42 @@
     </Style>
 
     <Style TargetType="TabItem">
-        <Setter Property="Height" Value="30" />
+        <Setter Property="Height" Value="35" />
         <Setter Property="Width" Value="170" />
+        <Setter Property="FontSize" Value="14" />
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Fill="{StaticResource ColorWindows}" Width="4" Height="20"
-                                   Visibility="{
+                    <Border Name="Border" Background="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{StaticResource ColorWindows}" Width="4" Height="20"
+                                       Visibility="{
                                                 Binding 
                                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem},    
                                                 Path=IsSelected,
                                                 Converter={StaticResource BooleanToVisibilityConverter}
                                                 }" />
 
-                        <ContentPresenter x:Name="ContentSite"
-                                          VerticalAlignment="Center"
-                                          HorizontalAlignment="Left"
-                                          ContentSource="Header"
-                                          Margin="15 0 0 0" />
+                            <ContentPresenter x:Name="ContentSite"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"
+                                              ContentSource="Header"
+                                              Margin="15 0 0 0" />
 
-                    </StackPanel>
+                        </StackPanel>
+                    </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Foreground" Value="{StaticResource ColorWindows}" />
-                            <!--<Setter Property=""></Setter>-->
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource ColorMouseOver}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
