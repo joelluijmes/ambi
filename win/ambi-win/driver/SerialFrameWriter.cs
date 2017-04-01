@@ -3,7 +3,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Text;
 
-namespace ambi_win
+namespace ambi_win.driver
 {
     internal class SerialFrameWriter : IFrameWriter, IDisposable
     {

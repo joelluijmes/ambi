@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ambi_win
+namespace ambi_win.driver
 {
     internal class Frame
     {

@@ -1,4 +1,4 @@
-namespace ambi_win
+namespace ambi_win.driver
 {
     internal interface IFrameWriter
     {
