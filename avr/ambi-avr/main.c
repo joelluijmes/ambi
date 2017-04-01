@@ -1,58 +1,68 @@
 // user libraries
 #include "config.h"
 #include "neo_apa104.h"
+#include "uart.h"
 
 // platform libraries
 #include <avr/io.h>
 #include <avr/common.h>
 #include <util/delay.h>
 
-#define LED_COUNT 60
-
-static void led_color(uint8_t r, uint8_t g, uint8_t b)
+typedef struct color_t 
 {
-	for (uint8_t i = 0; i < LED_COUNT; ++i)
-		neo_write_rgb(r, g, b);
+	uint8_t red;
+	uint8_t green;
+	uint8_t blue;
+} color_t;
+
+typedef struct frame_t
+{
+	uint16_t count;
+	color_t pixels[FRAME_LED_MAX];
+} frame_t;
+
+static void read_frame(volatile frame_t* frame)
+{
+	frame->count = (uart_getchar() | (uart_getchar() << 8));
+	for (uint16_t i = 0; i < frame->count; ++i)
+	{
+		frame->pixels[i].red = uart_getchar();
+		frame->pixels[i].green = uart_getchar();
+		frame->pixels[i].blue = uart_getchar();
+	}
+}
+
+static void show_frame(const frame_t* frame)
+{
+	for (uint8_t i = 0; i < frame->count; ++i)
+	{
+		neo_write_rgb(
+			frame->pixels[i].red,
+			frame->pixels[i].green,
+			frame->pixels[i].blue
+		);
+	}
 	
 	neo_reset();
 }
 
 int main(void)
 {
+	uart_init();
 	LED_OUTPUT();
-		
-	uint8_t r = 255;
-	uint8_t g = 0;
-	uint8_t b = 0;
 	
+	static volatile frame_t frame = { 0 };
+	frame.count = FRAME_LED_MAX;
+	show_frame(&frame);
+		
 	while (1)
 	{
-		for (uint8_t i = 0; i < 255; ++i)
-		{
-			++g;
-			--r;
-			
-			led_color(r, g, b);
-			_delay_ms(5);
-		}
+		asm("nop");
+		read_frame(&frame);
+		asm("nop");
+		show_frame(&frame);	
 		
-		for (uint8_t i = 0; i < 255; ++i)
-		{
-			++b;
-			--g;
-			
-			led_color(r, g, b);
-			_delay_ms(5);
-		}
-		
-		for (uint8_t i = 0; i < 255; ++i)
-		{
-			++r;
-			--b;
-			
-			led_color(r, g, b);
-			_delay_ms(5);
-		}
+		uart_putchar(0xCC);
 	}
 }
 

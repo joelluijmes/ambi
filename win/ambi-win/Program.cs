@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ambi_win
@@ -15,7 +16,7 @@ namespace ambi_win
         public byte Green { get; set; }
         public byte Blue { get; set; }
         
-        public Color(byte red = 0, byte green = 0, byte blue = 0)
+        public Color(byte red, byte green, byte blue)
         {
             Red = red;
             Green = green;
@@ -71,6 +72,9 @@ namespace ambi_win
                 _binaryWriter.Write(pixel.Green);
                 _binaryWriter.Write(pixel.Blue);
             }
+
+            int i = _serialPort.ReadByte();
+            
         }
 
         public void Dispose()
@@ -90,10 +94,44 @@ namespace ambi_win
     {
         private static void Main(string[] args)
         {
-            var frameWriter = new SerialFrameWriter("COM3", 115200);
-            var frame = new Frame(Enumerable.Range(0, 60).Select(i => new Color(42, 42, 42)).ToArray());
+            var frameWriter = new SerialFrameWriter("COM3", 9600);
 
-            frameWriter.Update(frame);
+            byte red = 255;
+            byte green = 0;
+            byte blue = 0;
+
+            const int delta = 1;
+            const int itr = 255 / delta;
+
+            while (true)
+            {
+                for (var i = 0; i < itr; ++i)
+                {
+                    red -= delta;
+                    green += delta;
+
+                    var frame = new Frame(Enumerable.Range(0, 60).Select(x => new Color(red, green, blue)).ToArray());
+                    frameWriter.Update(frame);
+                }
+
+                for (var i = 0; i < itr; ++i)
+                {
+                    green -= delta;
+                    blue += delta;
+
+                    var frame = new Frame(Enumerable.Range(0, 60).Select(x => new Color(red, green, blue)).ToArray());
+                    frameWriter.Update(frame);
+                }
+
+                for (var i = 0; i < itr; ++i)
+                {
+                    blue -= delta;
+                    red += delta;
+
+                    var frame = new Frame(Enumerable.Range(0, 60).Select(x => new Color(red, green, blue)).ToArray());
+                    frameWriter.Update(frame);
+                }
+            }
         }
     }
 }

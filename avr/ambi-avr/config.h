@@ -8,6 +8,7 @@
 
 // definitions and macros
 #define F_CPU			16000000U
+#define BAUD			9600U
 
 // LED Data pin
 #define LED_DDR			DDRB
@@ -21,3 +22,6 @@
 #define LED_TOGGLE()	(LED_PIN = LED_MASK)
 #define LED_INPUT()		(LED_DDR &= ~LED_MASK)
 #define LED_OUTPUT()	(LED_DDR |= LED_MASK)
+
+// (maximum) length that a frame can be
+#define FRAME_LED_MAX	60
