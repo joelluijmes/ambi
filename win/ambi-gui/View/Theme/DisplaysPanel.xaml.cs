@@ -41,12 +41,13 @@ namespace ambi_gui.View.Theme
                 return;
 
             const int size = 2;
-            var currentPixels = DisplaysCanvas.Children.OfType<Rectangle>().Where(rect => rect.Width < size+1 && rect.Height < size+1);
+            var currentPixels = DisplaysCanvas.Children.OfType<Rectangle>().Where(rect => rect.Width < size+1 && rect.Height < size+1).ToArray();
             foreach (var pixel in currentPixels)
                 DisplaysCanvas.Children.Remove(pixel);
 
 
-            var delta = (_drawnDisplaysArea.Width - size) / PixelCount;
+            var delta = (_drawnDisplaysArea.Width) / PixelCount;
+            var baseOffset = _drawnDisplaysArea.Width/2 / PixelCount + _drawnDisplaysArea.Left - size/2.0;
 
             for (var i = 0; i < PixelCount; ++i)
             {
@@ -58,7 +59,7 @@ namespace ambi_gui.View.Theme
                 };
 
                 DisplaysCanvas.Children.Add(pixel);
-                Canvas.SetLeft(pixel, i*delta + size + _drawnDisplaysArea.Left);
+                Canvas.SetLeft(pixel, baseOffset + i * delta );
                 Canvas.SetTop(pixel, _drawnDisplaysArea.Bottom - size*2);
             }
         }
