@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ambi_gui"
-                    xmlns:theme="clr-namespace:ambi_gui.View.Theme">
+                    xmlns:local="clr-namespace:ambi_gui" 
+                    xmlns:theme="clr-namespace:ambi_gui.Views.Theme">
     
     <ObjectDataProvider x:Key="WindowsColorizationProvider" 
                         ObjectType="{x:Type theme:WindowsColorizationProvider}" 

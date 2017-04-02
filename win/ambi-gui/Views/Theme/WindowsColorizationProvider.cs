@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows.Media;
 
-namespace ambi_gui.View.Theme
+namespace ambi_gui.Views.Theme
 {
     public static class WindowsColorizationProvider
     {

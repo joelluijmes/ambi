@@ -59,7 +59,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="Views\AmbiPixelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -67,28 +71,32 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\Converter\VisibilityConverter.cs" />
-    <Compile Include="View\Theme\DisplaysPanel.xaml.cs">
+    <Compile Include="Util.cs" />
+    <Compile Include="Views\AmbiPixelWindow.xaml.cs">
+      <DependentUpon>AmbiPixelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Converter\VisibilityConverter.cs" />
+    <Compile Include="Views\Theme\DisplaysPanel.xaml.cs">
       <DependentUpon>DisplaysPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Theme\WindowsColorizationProvider.cs" />
-    <Compile Include="View\MainWindow.xaml.cs">
+    <Compile Include="Views\Theme\WindowsColorizationProvider.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Theme\ColorsDictionary.xaml">
+    <Page Include="Views\Theme\ColorsDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Theme\DisplaysPanel.xaml">
+    <Page Include="Views\Theme\DisplaysPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Theme\TabControlDictionary.xaml">
+    <Page Include="Views\Theme\TabControlDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Theme\WindowsThemeDictionary.xaml">
+    <Page Include="Views\Theme\WindowsThemeDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,5 +128,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,10 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ambi_gui.View.Converter
+namespace ambi_gui.Views.Converter
 {
     public sealed class VisibilityConverter : IValueConverter
     {

@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace ambi_gui.View.Theme
+namespace ambi_gui.Views.Theme
 {
     /// <summary>
     ///     Interaction logic for DisplaysPanel.xaml
