@@ -4,43 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ambi_gui"
+        xmlns:theme="clr-namespace:ambi_gui.View.Theme"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">  
-    
-    <Window.Resources>
-        
-        <!--<Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="White" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Height" Value="30" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#DDDDDD"/>
-                </Trigger>
-                <Trigger Property="Button.IsPressed" Value="True">
-                    <Setter Property="Background" Value="#CCCCCC"/>
-                </Trigger>
-            </Style.Triggers>
+        Title="MainWindow" Height="425" Width="600">
 
-        </Style>-->
-    </Window.Resources>
-    
-    <TabControl>
+    <TabControl Margin="0 10 20 0">
         <TabItem Header="Display">
-            <Label>Choose pixels</Label>
+            <StackPanel>
+                <Label FontSize="20" Margin="0 0 0 20">Set up ambi-points</Label>
+
+                <StackPanel>
+                    <Rectangle Fill="#EEEEEE" Height="150" />
+                    <Label Foreground="{StaticResource ColorWindows}">Preview</Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 10">
+                    <Label Width="80">Pixels</Label>
+                    <TextBox Width="160" VerticalAlignment="Center" Height="24">60</TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+
+                    <Button Margin="0 0 20 0">
+                        Apply
+                    </Button>
+
+                    <Button>
+                        Cancel
+                    </Button>
+                </StackPanel>
+
+            </StackPanel>
         </TabItem>
-        
+
         <TabItem Header="About">
-            <Label>This is an application</Label>
+            <Label FontSize="20">About</Label>
         </TabItem>
     </TabControl>
 </Window>

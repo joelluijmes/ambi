@@ -8,7 +8,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="View/Theme/TabControlDictionary.xaml" />
                 <ResourceDictionary Source="View/Theme/ColorsDictionary.xaml" />
+                <ResourceDictionary Source="View/Theme/WindowsThemeDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
